@@ -1,0 +1,23 @@
+
+void getcoordinates()
+{ delay(500);
+  outtextxy(20,70,"# Enter coordinates of center :-");
+  setlinestyle(0,0,1);
+  delay(500);
+  line(20,85,270,85);
+  delay(500);
+  outtextxy(20,105,"-> Input x=450, y=320 & r=100 for refrence.");
+  delay(500);
+  outtextxy(20,132,"Enter x - coordinate (h) : ");
+  gotoxy(30,9);
+  scanf("%d",&h);
+  outtextxy(20,148,"Enter y - coordinate (k) : ");
+  gotoxy(30,10);
+  scanf("%d",&k);
+  outtextxy(20,180,"Enter radius (r) : ");
+  gotoxy(22,12);
+  scanf("%d",&r);
+  setlinestyle(1,0,1);
+  delay(500);
+  line(20,205,320,205);
+}
