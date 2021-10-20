@@ -97,6 +97,13 @@ void mpcircle()
   circle(h,k,1);
 }
 
+void frame()
+{ line(0,0,getmaxx(),0);
+  line(0,0,0,getmaxy());
+  line(getmaxx(),0,getmaxx(),getmaxy());
+  line(0,getmaxy(),getmaxx(),getmaxy());
+}
+
 void details()
 { setlinestyle(1,0,1);
   delay(500);
@@ -163,6 +170,7 @@ void details()
 void main()
 { int gd=DETECT,gm;
   initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+  frame();
   delay(200);
   outtextxy(120,20,"-: Circle (Mid-Point Circle drawimg algorithm) :-");
   delay(200);
@@ -183,6 +191,7 @@ void main()
   else
   { mpcircle(); }
   delay(200);
+  outtextxy(20,450,"Press any key to EXIT ...");
   getch();
   closegraph();
 }
