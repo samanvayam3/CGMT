@@ -3,9 +3,8 @@
 #include<graphics.h>
 #include<dos.h>
 
-int x,y,h,k,r;
+int x,y,h,k,r,d;
 char A[15];
-float p;
 
 void getcoordinates()
 { delay(500);
@@ -30,7 +29,7 @@ void getcoordinates()
   line(20,205,320,205);
 }
 
-void midpointcircle()
+void bresenhamcircle()
 { setcolor(7);
   setlinestyle(2,0,1);
   delay(100);
@@ -51,31 +50,31 @@ void midpointcircle()
   line(h,k,h+r,k-r);
   setcolor(15);
   y=r;
-  p=1.25-r;
+  d=3-2*r;
   for(x=0;x<=y;x++)
   { delay(23);
-    putpixel(h+y,k+x,2); //octant-1
-    putpixel(h+x,k+y,1); //octant-2
-    putpixel(h-x,k+y,4); //octand-3
-    putpixel(h-y,k+x,3); //octant-4
-    putpixel(h-y,k-x,6); //Octant-5
-    putpixel(h-x,k-y,5); //Octant-6
-    putpixel(h+x,k-y,9); //Octant-7
-    putpixel(h+y,k-x,7); //Octant-8
-    if(p<0)
-    { p=p+2*x+3;
+    putpixel(h+y,k+x,9); //octant-1
+    putpixel(h+x,k+y,10); //octant-2
+    putpixel(h-x,k+y,11); //octand-3
+    putpixel(h-y,k+x,12); //octant-4
+    putpixel(h-y,k-x,13); //Octant-5
+    putpixel(h-x,k-y,14); //Octant-6
+    putpixel(h+x,k-y,15); //Octant-7
+    putpixel(h+y,k-x,5); //Octant-8
+    if(d<0)
+    { d=d+4*x+6;
     }
     else
     { y--;
-      p=p+2*(x-y)+5;
+      d=d+4*(x-y)+10;
     }
   }
   circle(h,k,1);
 }
 
-void mpcircle()
+void brcircle()
 { y=r;
-  p=1.25-r;
+  d=3-2*r;
   for(x=0;x<=y;x++)
   { delay(23);
     putpixel(h+y,k+x,15); //octant-1
@@ -86,12 +85,12 @@ void mpcircle()
     putpixel(h-x,k-y,15); //Octant-6
     putpixel(h+x,k-y,15); //Octant-7
     putpixel(h+y,k-x,15); //Octant-8
-    if(p<0)
-    { p=p+2*x+3;
+    if(d<0)
+    { d=d+4*x+6;
     }
     else
     { y--;
-      p=p+2*(x-y)+5;
+      d=d+4*(x-y)+10;
     }
   }
   circle(h,k,1);
@@ -172,9 +171,9 @@ void main()
   initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
   frame();
   delay(200);
-  outtextxy(120,20,"-: Circle (Mid-Point Circle drawimg algorithm) :-");
+  outtextxy(115,20,"-: Circle (Bresenham's Circle Drawimg Algorithm) :-");
   delay(200);
-  line(143,33,485,33);
+  line(138,33,495,33);
   setlinestyle(3,0,1);
   delay(200);
   line(40,50,600,50);
@@ -182,14 +181,14 @@ void main()
   getcoordinates();
   delay(200);
   if((h==450)&&(k==320)&&(r==100))
-  { midpointcircle();
+  { bresenhamcircle();
     delay(200);
     details();
     delay(200);
     line(20,430,300,430);
   }
   else
-  { mpcircle(); }
+  { brcircle(); }
   delay(200);
   outtextxy(20,450,"Press any key to EXIT ...");
   getch();
